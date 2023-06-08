@@ -1,0 +1,1347 @@
+WindowManager:
+    SecondWindow:
+    PopupWindow:
+    StudiumWindow:
+    OxidyWindow:
+    OxidyLearnWindow:
+    OxidyPrikladyWindow:
+    KyselinyWindow:
+    KyselinyLearnWindow:
+    KyselinyPrikladyWindow:
+    HydroxidyWindow:
+    HydroxidyLearnWindow:
+    HydroxidyPrikladyWindow:
+    SoliWindow:
+    SoliPrikladyWindow:
+    SoliLearnWindow:
+    OAplikaciWindow:
+
+
+
+
+
+<SecondWindow>
+    name: "second"
+    historylayout: historylayout
+    input: input
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            TextInput:
+                id: input
+                size_hint: 0.7,0.25
+                font_size: self.size[1]/3
+                pos_hint: {"x": 0.15, "y": 0.4}
+                halign: 'center'
+            Button:
+                text: "PŘEVÉST"
+                size_hint: 0.4,0.14
+                pos_hint: {"x": 0.25, "y": 0.25}
+                on_press: root.vysledek()
+                on_release: root.add_historywidget()
+                background_color: (238/255, 255/255, 204/255)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+            Button:
+                text: "C"
+                size_hint: 0.1,0.14
+                pos_hint: {"x": 0.66, "y": 0.25}
+                on_press: root.clear()
+                background_color: (238/255, 255/255, 204/255)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+            Label:
+                text: "Názvosloví"
+                bold: True
+                size_hint: 1,0.152
+                color: (0,0,0,1)
+                pos_hint: {"x": 0, "y": 0.828}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                background_color: (230/255,255/255,153/255,0)
+                size_hint: 0.04,0.08
+                pos_hint: {"x": 0.95, "y": 0.858}
+                on_release: root.show_p()
+                Image:
+                    size: root.velikost()
+                    allow_stretch: True
+                    source: 'dots_icon2.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+
+
+        BoxLayout:
+            orientation: "vertical"
+            id: historylayout
+            #background_color: (144/255,99/255,56/255,1)
+            #canvas.before:
+                #Color:
+                    #rgba: self.background_color
+                #Rectangle:
+                    #size: self.size
+                    #pos: self.pos
+
+
+
+
+
+<PopupWindow@Popup>
+    auto_dismiss: False
+    size_hint: 1,1
+    GridLayout:
+        cols: 1
+        rows: 2
+        spacing: 10
+        Button:
+            text: "Studium"
+            font_size: self.size[0]/8
+            on_release:
+                app.root.current = "studium"
+            background_color: (238/255, 255/255, 204/255)
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        Button:
+            text: "O Aplikaci"
+            font_size: self.size[0]/8
+            on_release:
+                app.root.current = "o_aplikaci"
+            background_color: (238/255, 255/255, 204/255)
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+
+<OAplikaciWindow>
+    name: "o_aplikaci"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientetion: "vertical"
+            Label:
+                text: "O Aplikaci"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "second"
+                    root.manager.transition.direction = "right"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        GridLayout:
+            spacing: 80
+            rows: 3
+            size_hint: 1,0.92
+            BoxLayout:
+                size_hint: 1,0.5
+                orientation: 'vertical'
+                Label:
+                    text: "Chemické názvosloví"
+                    color: (0,0,0,1)
+                    font_size: root.velikost2()
+                    bold: True
+                    halign: 'center'
+
+
+                Label:
+                    text: "Autor: Michael Fiala, Matouš Obruča"
+                    color: (0,0,0,1)
+                    font_size: root.velikost2()
+                    halign: 'center'
+                Label:
+                    text: "Verze: 1.0 (2023)"
+                    color: (0,0,0,1)
+                    font_size: root.velikost2()
+                    halign: 'center'
+            BoxLayout:
+                size_hint: 1,0.2
+                orientation: 'vertical'
+                Label:
+                    text: "Aplikace převádí názvy a vzorce Oxidů, Kyselin, Hydroxidů a Solí."
+                    color: (0,0,0,1)
+                    halign: 'center'
+                    font_size: root.velikost3()
+                Label:
+                    text: "Zároveň poslouží k učení a trénování názvosloví."
+                    color: (0,0,0,1)
+                    halign: 'center'
+                    font_size: root.velikost3()
+            BoxLayout:
+                size_hint: 1,0.5
+                orientation: 'vertical'
+                Label:
+                    text: "Nápověda:"
+                    color: (0,0,0,1)
+                    font_size: root.velikost2()
+                    halign: 'center'
+                Label:
+                    text: "Vzorec prvku má první písmeno velké a druhé malé: Se, Br, Cl."
+                    color: (0,0,0,1)
+                    font_size: root.velikost()
+                    halign: 'center'
+                Label:
+                    text: "Prvky i oxidační čísla se zadávají přímo po sobě bez mezery: H2SO4."
+                    color: (0,0,0,1)
+                    font_size: root.velikost()
+                    halign: 'center'
+                Label:
+                    text: "Zbytek kyseliny u kyslíkatých solí se zapisuje se závorkou: Ca3(PO4)2."
+                    color: (0,0,0,1)
+                    font_size: root.velikost()
+                    halign: 'center'
+
+<StudiumWindow>
+    name: "studium"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientation: "vertical"
+            Label:
+                text: "Studium"
+                bold: True
+                color: (0,0,0,1)
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "second"
+                    root.manager.transition.direction = "right"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        BoxLayout:
+            spacing: 10
+            padding: 10
+            orientation: "horizontal"
+            BoxLayout:
+                spacing: 10
+                orientation: "vertical"
+                Button:
+                    text: "Oxidy"
+                    font_size: self.size [1]/11
+                    on_release:
+                        app.root.current= "oxidy"
+                        root.manager.transition.direction = "left"
+                    background_color: (238/255, 255/255, 204/255)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+
+                Button:
+                    text: "Kyseliny"
+                    font_size: self.size[1]/11
+                    on_release:
+                        app.root.current= "kyseliny"
+                        root.manager.transition.direction = "left"
+                    background_color: (238/255, 255/255, 204/255)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+
+            BoxLayout:
+                spacing: 10
+                orientation: "vertical"
+                Button:
+                    text: "Hydroxidy"
+                    font_size: self.size[1]/11
+                    on_release:
+                        app.root.current = "hydroxidy"
+                        root.manager.transition.direction = "right"
+                    background_color: (238/255, 255/255, 204/255)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                Button:
+                    text: "Soli"
+                    font_size: self.size[1]/11
+                    on_release:
+                        app.root.current = "soli"
+                        root.manager.transition.direction = "right"
+                    background_color: (238/255, 255/255, 204/255)
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+
+<OxidyWindow>
+    name: "oxidy"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientetion: "vertical"
+            Label:
+                text: "Oxidy"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "studium"
+                    root.manager.transition.direction = "left"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        BoxLayout:
+            spacing: 20
+            padding: 20
+            orientation: "vertical"
+            Button:
+                text: "Vysvětlení"
+                font_size:	self.size[1]/11
+                on_release:
+                    app.root.current= "oxidy_uč"
+                    root.manager.transition.direction = "left"
+                background_color: (238/255, 255/255, 204/255)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "Příklady"
+                font_size: self.size[1]/11
+                on_release:
+                    app.root.current= "oxidy_priklady"
+                    root.manager.transition.direction = "left"
+                background_color: (238/255, 255/255, 204/255)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+<KyselinyWindow>
+    name: "kyseliny"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientetion: "vertical"
+            Label:
+                text: "Kyseliny"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                color:(0,0,0,1)
+                bold: True
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "studium"
+                    root.manager.transition.direction = "left"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        BoxLayout:
+            spacing: 20
+            padding: 20
+            orientation: "vertical"
+            Button:
+                text: "Vysvětlení"
+                font_size: self.size[1]/11
+                background_color: (238/255, 255/255, 204/255)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                on_release:
+                    app.root.current= "kyseliny_uč"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "Příklady"
+                font_size: self.size[1]/11
+                on_release:
+                    app.root.current = "kyseliny_priklady"
+                    root.manager.transition.direction = "right"
+                background_color: (238/255, 255/255, 204/255)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+<OxidyLearnWindow>
+    name: "oxidy_uč"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientetion: "vertical"
+            Label:
+                text: "Vysvětlení"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "oxidy"
+                    root.manager.transition.direction = "right"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        GridLayout:
+            col: 1
+            rows: 2
+            Image:
+                source: 'tabulkaoxid2.png'
+                allow_stretch: True
+                size_hint: root.velikost()
+            Image:
+                source: 'tabulkaoxid1.png'
+                allow_stretch: True
+                size_hint: root.velikost()
+
+<OxidyPrikladyWindow>
+    name: "oxidy_priklady"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientetion: "vertical"
+            Label:
+                text: "Příklady"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "oxidy"
+                    root.manager.transition.direction = "right"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        GridLayout:
+            cols: 2
+            rows: 8
+            Label:
+                text: "Li2O"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: o11
+            TextInput:
+                id: o1
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "oxid hořečnatý"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: o22
+            TextInput:
+                id: o2
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "Cu2O"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: o33
+            TextInput:
+                id: o3
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "oxid chloristý"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: o44
+            TextInput:
+                id: o4
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "Al2O3"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: o55
+            TextInput:
+                id: o5
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "oxid uhličitý"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: o66
+            TextInput:
+                id: o6
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "SeO3"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: o77
+            TextInput:
+                id: o7
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: ""
+                id: o8
+                color: (0.1,0.1,0.1,1)
+                font_size: self.size[0]/22
+            Button:
+                text:"Zkontrolovat"
+                font_size: self.size[1]/4
+                on_press: root.kontrola()
+                background_color: (238/255, 255/255, 204/255)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        Button:
+            size_hint: 1,0.15
+            text: "Generujte nové příklady"
+            font_size: self.size[1]/5
+            on_press: root.vyber(), root.clear()
+            background_color: (238/255, 255/255, 204/255)
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+
+<KyselinyPrikladyWindow>
+    name: "kyseliny_priklady"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientetion: "vertical"
+            Label:
+                text: "Příklady"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "kyseliny"
+                    root.manager.transition.direction = "right"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        GridLayout:
+            cols: 2
+            rows: 8
+            Label:
+                text: "H2SeO4"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: k11
+            TextInput:
+                id: k1
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "kyselina bromovodíková"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: k22
+            TextInput:
+                id: k2
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "HNO2"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: k33
+            TextInput:
+                id: k3
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "kyselina jodistá"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: k44
+            TextInput:
+                id: k4
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "HBrO3"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: k55
+            TextInput:
+                id: k5
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "kyselina uhličitá"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: k66
+            TextInput:
+                id: k6
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "HClO"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: k77
+            TextInput:
+                id: k7
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: ""
+                id: k8
+                color: (0.1,0.1,0.1,1)
+                font_size: self.size[0]/22
+            Button:
+                text:"Zkontrolovat"
+                font_size: self.size[1]/4
+                on_press: root.kontrola()
+                background_color: (238/255, 255/255, 204/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+        Button:
+            size_hint: 1,0.15
+            text: "Generujte nové příklady"
+            font_size: self.size[1]/5
+            on_press: root.vyber(), root.clear()
+            background_color: (238/255, 255/255, 204/255,1)
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+<KyselinyLearnWindow>
+    name: "kyseliny_uč"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientetion: "vertical"
+            Label:
+                text: "Vysvětlení"
+                bold: True
+                color: (0,0,0,1)
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "kyseliny"
+                    root.manager.transition.direction = "right"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        GridLayout:
+            col: 1
+            rows: 2
+            Image:
+                source: 'tabulkakys2.png'
+                allow_stretch: True
+                size_hint: root.velikost()
+            Image:
+                source: 'tabulkakys1.png'
+                allow_stretch: True
+                size_hint: root.velikost()
+
+<HydroxidyWindow>
+    name: "hydroxidy"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientetion: "vertical"
+            Label:
+                text: "Hydroxidy"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "studium"
+                    root.manager.transition.direction = "left"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 20
+            Button:
+                text: "Vysvětlení"
+                font_size: self.size[1]/11
+                on_release:
+                    app.root.current = "hydroxidy_uč"
+                    root.manager.transition.direction = "right"
+                background_color: (238/255, 255/255, 204/255)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "Příklady"
+                font_size: self.size[1]/11
+                on_release:
+                    app.root.current = "hydroxidy_priklady"
+                    root.manager.transition.direction = "right"
+                background_color: (238/255, 255/255, 204/255)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+<HydroxidyLearnWindow>
+    name: "hydroxidy_uč"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientetion: "vertical"
+            Label:
+                text: "Vysvětlení"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "hydroxidy"
+                    root.manager.transition.direction = "right"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        GridLayout:
+            col: 1
+            rows: 2
+            Image:
+                source: 'hydroxidy1.png'
+                allow_stretch: True
+                size_hint: root.velikost()
+            Image:
+                source: 'hydroxidy2.png'
+                allow_stretch: True
+                size_hint: root.velikost()
+
+<HydroxidyPrikladyWindow>
+    name: "hydroxidy_priklady"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientetion: "vertical"
+            Label:
+                text: "Příklady"
+                bold: True
+                color: (0,0,0,1)
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                bold: True
+                color: (0,0,0,1)
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "hydroxidy"
+                    root.manager.transition.direction = "right"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        GridLayout:
+            cols: 2
+            rows: 8
+            Label:
+                text: "LiOH"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: h11
+            TextInput:
+                id: h1
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "hydroxid hlinitý"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: h22
+            TextInput:
+                id: h2
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "MgOH2"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: h33
+            TextInput:
+                id: h3
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "hydroxid vápenatý"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: h44
+            TextInput:
+                id: h4
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "FeOH2"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: h55
+
+            TextInput:
+                id: h5
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "hydroxid barnatý"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: h66
+            TextInput:
+                id: h6
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "NH4OH"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: h77
+            TextInput:
+                id: h7
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: ""
+                id: h8
+                color: (0.1,0.1,0.1,1)
+                font_size: self.size[0]/22
+            Button:
+                text:"Zkontrolovat"
+                font_size: self.size[1]/4
+                on_press: root.kontrola()
+                background_color: (238/255, 255/255, 204/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        Button:
+            size_hint: 1,0.15
+            text: "Generujte nové příklady"
+            font_size: self.size[1]/5
+            on_press: root.vyber(), root.clear()
+            background_color: (238/255, 255/255, 204/255,1)
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+<SoliWindow>
+    name: "soli"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientetion: "vertical"
+            Label:
+                text: "Soli"
+                bold: True
+                color: (0,0,0,1)
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                bold: True
+                color: (0,0,0,1)
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "studium"
+                    root.manager.transition.direction = "left"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 20
+            Button:
+                text: "Vysvětlení"
+                font_size: self.size[1]/11
+                on_release:
+                    app.root.current = "soli_uč"
+                    root.manager.transition.direction = "right"
+                background_color: (238/255, 255/255, 204/255)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "Příklady"
+                font_size: self.size[1]/11
+                on_release:
+                    app.root.current = "soli_priklady"
+                    root.manager.transition.direction = "right"
+                background_color: (238/255, 255/255, 204/255)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+<SoliPrikladyWindow>
+    name: "soli_priklady"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientetion: "vertical"
+            Label:
+                text: "Příklady"
+                bold: True
+                color: (0,0,0,1)
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                color: (0,0,0,1)
+                bold: True
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "soli"
+                    root.manager.transition.direction = "right"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        GridLayout:
+            cols: 2
+            rows: 8
+            Label:
+                text: "Na(ClO)"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: s11
+            TextInput:
+                id: s1
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "dusitan amonný"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: s22
+            TextInput:
+                id: s2
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "Mg(CO3)"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: s33
+            TextInput:
+                id: s3
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "jodičnan draselný"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: s44
+            TextInput:
+                id: s4
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "Ca3(PO4)2"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: s55
+            TextInput:
+                id: s5
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "síran barnatý"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: s66
+            TextInput:
+                id: s6
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: "K(MnO4)"
+                font_size: self.size[1]/4.8
+                color: (0.1,0.1,0.1,1)
+                id: s77
+            TextInput:
+                id: s7
+                halign: 'center'
+                font_size: self.size[1]/3
+
+            Label:
+                text: ""
+                id: s8
+                color: (0.1,0.1,0.1,1)
+                font_size: self.size[0]/22
+            Button:
+                text:"Zkontrolovat"
+                font_size: self.size[1]/4
+                on_press: root.kontrola()
+                background_color: (238/255, 255/255, 204/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        Button:
+            size_hint: 1,0.15
+            text: "Generujte nové příklady"
+            font_size: self.size[1]/5
+            on_press: root.vyber(), root.clear()
+            background_color: (238/255, 255/255, 204/255,1)
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+<SoliLearnWindow>
+    name: "soli_uč"
+    BoxLayout:
+        orientation: "vertical"
+        FloatLayout:
+            size_hint: 1,0.08
+            orientetion: "vertical"
+            Label:
+                text: "Vysvětlení"
+                bold: True
+                color: (0,0,0,1)
+                size_hint: 1,1
+                pos_hint: {"x": 0, "y": 0.01}
+                background_color: (230/255,255/255,153/255,1)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                text: "<-"
+                bold: True
+                color: (0,0,0,1)
+                size_hint: 0.065,1
+                pos_hint: {"x": 0, "y": 0}
+                on_release:
+                    app.root.current = "soli"
+                    root.manager.transition.direction = "right"
+                background_color: (230/255,255/255,153/255,0)
+                canvas.before:
+                    Color:
+                        rgba: self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        GridLayout:
+            col: 1
+            rows: 2
+            Image:
+                source: 'solitabulka.png'
+                allow_stretch: True
+                size_hint: root.velikost()
+            Image:
+                source: 'solitabulka2.png'
+                allow_stretch: True
+                size_hint: root.velikost()
+
